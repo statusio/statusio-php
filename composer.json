@@ -1,0 +1,30 @@
+{
+  "name": "statusio/statusio-php",
+  "description": "Status.io API for PHP",
+  "license": "GPL-3.0",
+  "keywords": [
+    "statusio",
+    "status io",
+    "status.io",
+    "status page",
+    "status system",
+    "api"
+  ],
+  "authors": [
+    {
+      "name": "Status.io",
+      "email": "hello@status.io"
+    }
+  ],
+  "require": {
+    "guzzlehttp/guzzle": "~6"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "5.1.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Statusio\\": "src"
+    }
+  }
+}
