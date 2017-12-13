@@ -14,7 +14,7 @@ class SubscriberTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testSubscriberAdd() {
-        $response = $this->statusioClient->SubscriberAdd(getenv('STATUSPAGE_ID'), 'email', 'pjfry@planetexpress.com');
+        $response = $this->statusioClient->SubscriberAdd(getenv('STATUSPAGE_ID'), 'email', 'apitest@example.com');
         $this->assertEquals('no', $response->status->error);
         return $response->subscriber_id;
     }
@@ -33,7 +33,7 @@ class SubscriberTest extends PHPUnit_Framework_TestCase {
      * @depends testSubscriberList
      */
     public function testSubscriberUpdate($subscriber_id) {
-        $response = $this->statusioClient->SubscriberUpdate(getenv('STATUSPAGE_ID'), $subscriber_id, 'p.jfry@planet.com');
+        $response = $this->statusioClient->SubscriberUpdate(getenv('STATUSPAGE_ID'), $subscriber_id, 'apitest@example.com');
         $this->assertEquals('no', $response->status->error);
         return $subscriber_id;
     }
