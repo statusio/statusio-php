@@ -49,21 +49,21 @@ class StatusioClient {
 
     private function getNotify($notifications) {
         $notify = [
-            'notify_email' => 0,
-            'notify_sms' => 0,
-            'notify_webhook' => 0,
-            'social' => 0,
-            'irc' => 0,
-            'hipchat' => 0,
-            'slack' => 0
+            'notify_email' => "0",
+            'notify_sms' => "0",
+            'notify_webhook' => "0",
+            'social' => "0",
+            'irc' => "0",
+            'hipchat' => "0",
+            'slack' => "0"
         ];
-        if(($notifications & StatusioClient::NOTIFY_EMAIL) == StatusioClient::NOTIFY_EMAIL) $notify['notify_email'] = 1;
-        if(($notifications & StatusioClient::NOTIFY_SMS) == StatusioClient::NOTIFY_SMS) $notify['notify_sms'] = 1;
-        if(($notifications & StatusioClient::NOTIFY_WEBHOOK) == StatusioClient::NOTIFY_WEBHOOK) $notify['notify_webhook'] = 1;
-        if(($notifications & StatusioClient::NOTIFY_SOCIAL) == StatusioClient::NOTIFY_SOCIAL) $notify['social'] = 1;
-        if(($notifications & StatusioClient::NOTIFY_IRC) == StatusioClient::NOTIFY_IRC) $notify['irc'] = 1;
-        if(($notifications & StatusioClient::NOTIFY_HIPCHAT) == StatusioClient::NOTIFY_HIPCHAT) $notify['hipchat'] = 1;
-        if(($notifications & StatusioClient::NOTIFY_SLACK) == StatusioClient::NOTIFY_SLACK) $notify['slack'] = 1;
+        if(($notifications & StatusioClient::NOTIFY_EMAIL) == StatusioClient::NOTIFY_EMAIL) $notify['notify_email'] = "1";
+        if(($notifications & StatusioClient::NOTIFY_SMS) == StatusioClient::NOTIFY_SMS) $notify['notify_sms'] = "1";
+        if(($notifications & StatusioClient::NOTIFY_WEBHOOK) == StatusioClient::NOTIFY_WEBHOOK) $notify['notify_webhook'] = "1";
+        if(($notifications & StatusioClient::NOTIFY_SOCIAL) == StatusioClient::NOTIFY_SOCIAL) $notify['social'] = "1";
+        if(($notifications & StatusioClient::NOTIFY_IRC) == StatusioClient::NOTIFY_IRC) $notify['irc'] = "1";
+        if(($notifications & StatusioClient::NOTIFY_HIPCHAT) == StatusioClient::NOTIFY_HIPCHAT) $notify['hipchat'] = "1";
+        if(($notifications & StatusioClient::NOTIFY_SLACK) == StatusioClient::NOTIFY_SLACK) $notify['slack'] = "1";
         return $notify;
     }
 
