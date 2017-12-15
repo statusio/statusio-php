@@ -1,7 +1,5 @@
 # Status.io API for PHP
 
-[![Travis CI](https://travis-ci.org/statusio/statusio-php.svg)](https://travis-ci.org/statusio/statusio-php)
-
 A PHP Package for Status.io API
 
 ## Installation
@@ -37,8 +35,8 @@ var_dump($result);
     $api->IncidentDelete($statuspage_id, $incident_id)
     $api->MaintenanceList($statuspage_id)
     $api->MaintenanceMessage($statuspage_id, $message_id)
-    $api->MaintenanceSchedule($statuspage_id, $maintenance_name, $maintenance_details, $components, 
-                              $containers, $date_planned_start, $time_planned_start, $date_planned_end, 
+    $api->MaintenanceSchedule($statuspage_id, $maintenance_name, $maintenance_details, $infrastructure_affected, 
+                              $date_planned_start, $time_planned_start, $date_planned_end, 
                               $time_planned_end, $automation = 0, $all_infrastructure_affected = 0, 
                               $maintenance_notify_now = 0, $maintenance_notify_1_hr = 0, 
                               $maintenance_notify_24_hr = 0, $maintenance_notify_72_hr = 0)

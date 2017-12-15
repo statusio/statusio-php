@@ -250,8 +250,7 @@ class StatusioClient {
      * @param string $statuspage_id Status page ID
      * @param string $maintenance_name A descriptive title for this maintenance
      * @param string $maintenance_details Message describing this maintenance
-     * @param array $components ID of each affected component
-     * @param array $containers ID of each affected container
+     * @param array infrastructure_affected ID of each affected component and container combo
      * @param string $date_planned_start Date maintenance is expected to start
      * @param string $time_planned_start Time maintenance is expected to start
      * @param string $date_planned_end Date maintenance is expected to end
@@ -264,7 +263,7 @@ class StatusioClient {
      * @param int $maintenance_notify_72_hr Notify subscribers 72 hours before scheduled maintenance start time (1 = Send notification)
      * @return object
      */
-    public function MaintenanceSchedule($statuspage_id, $maintenance_name, $maintenance_details, $components, $containers,
+    public function MaintenanceSchedule($statuspage_id, $maintenance_name, $maintenance_details, $infrastructure_affected,
                                         $date_planned_start, $time_planned_start, $date_planned_end, $time_planned_end,
                                         $automation = 0, $all_infrastructure_affected = 0,
                                         $maintenance_notify_now = 0, $maintenance_notify_1_hr = 0,
@@ -273,8 +272,7 @@ class StatusioClient {
         $data['statuspage_id'] = $statuspage_id;
         $data['maintenance_name'] = $maintenance_name;
         $data['maintenance_details'] = $maintenance_details;
-        $data['components'] = $components;
-        $data['containers'] = $containers;
+        $data['infrastructure_affected'] = $infrastructure_affected;
         $data['all_infrastructure_affected'] = $all_infrastructure_affected;
         $data['date_planned_start'] = $date_planned_start;
         $data['time_planned_start'] = $time_planned_start;

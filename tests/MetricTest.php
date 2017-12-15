@@ -10,11 +10,11 @@ class MetricTest extends PHPUnit_Framework_TestCase {
     public function __construct()
     {
         // Setup
-        $this->statusioClient = new StatusioClient(getenv('API_ID'), getenv('API_KEY'));
+        $this->statusioClient = new StatusioClient('', '');
     }
 
     public function testStatusSummary() {
-        $response = $this->statusioClient->MetricUpdate(getenv('STATUSPAGE_ID'), getenv('METRIC_ID'),
+        $response = $this->statusioClient->MetricUpdate('568d8a3e3cada8c2490000dd', '568d8ab5efe35d412f0006f8',
             22.58,
             1395981878000,
             [

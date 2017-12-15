@@ -10,11 +10,11 @@ class StatusTest extends PHPUnit_Framework_TestCase {
     public function __construct()
     {
         // Setup
-        $this->statusioClient = new StatusioClient(getenv('API_ID'), getenv('API_KEY'));
+        $this->statusioClient = new StatusioClient('', '');
     }
 
     public function testStatusSummary() {
-        $response = $this->statusioClient->StatusSummary(getenv('STATUSPAGE_ID'));
+        $response = $this->statusioClient->StatusSummary('568d8a3e3cada8c2490000dd');
         $this->assertEquals('no', $response->status->error);
     }
 }

@@ -10,12 +10,12 @@ class IncidentTest extends PHPUnit_Framework_TestCase {
     public function __construct()
     {
         // Setup
-        $this->statusioClient = new StatusioClient(getenv('API_ID'), getenv('API_KEY'));
+        $this->statusioClient = new StatusioClient('', '');
     }
 
     public function testIncidentCreate() {
-        $response = $this->statusioClient->IncidentCreate(getenv('STATUSPAGE_ID'), 'Incident', 'Details',
-            [getenv('COMPONENT')], [getenv('CONTAINER')], StatusioClient::STATUS_OPERATIONAL,
+        $response = $this->statusioClient->IncidentCreate('568d8a3e3cada8c2490000dd', 'Incident', 'Details',
+            ['568d8a3e3cada8c2490000ed'], ['568d8a3e3cada8c2490000ec'], StatusioClient::STATUS_OPERATIONAL,
             StatusioClient::STATE_IDENTIFIED, StatusioClient::NOTIFY_SLACK + StatusioClient::NOTIFY_HIPCHAT);
 
         $this->assertEquals('no', $response->status->error);
@@ -26,7 +26,7 @@ class IncidentTest extends PHPUnit_Framework_TestCase {
      * @depends testIncidentCreate
      */
     public function testIncidentList($incident_id) {
-        $response = $this->statusioClient->IncidentList(getenv('STATUSPAGE_ID'));
+        $response = $this->statusioClient->IncidentList('568d8a3e3cada8c2490000dd');
         $this->assertEquals('no', $response->status->error);
         $this->assertEquals($incident_id, $response->result->active_incidents[0]->_id);
         return array($incident_id, $response->result->active_incidents[0]->messages[0]->_id);
@@ -37,7 +37,7 @@ class IncidentTest extends PHPUnit_Framework_TestCase {
      */
     public function testIncidentMessage($data) {
         list($incident_id, $message_id) = $data;
-        $response = $this->statusioClient->IncidentMessage(getenv('STATUSPAGE_ID'), $message_id);
+        $response = $this->statusioClient->IncidentMessage('568d8a3e3cada8c2490000dd', $message_id);
         $this->assertEquals('no', $response->status->error);
         return $incident_id;
     }
@@ -46,7 +46,7 @@ class IncidentTest extends PHPUnit_Framework_TestCase {
      * @depends testIncidentMessage
      */
     public function testIncidentUpdate($incident_id) {
-        $response = $this->statusioClient->IncidentUpdate(getenv('STATUSPAGE_ID'), $incident_id, 'Update', StatusioClient::STATUS_DEGRADED_PERFORMANCE, StatusioClient::STATE_MONITORING);
+        $response = $this->statusioClient->IncidentUpdate('568d8a3e3cada8c2490000dd', $incident_id, 'Update', StatusioClient::STATUS_DEGRADED_PERFORMANCE, StatusioClient::STATE_MONITORING);
         $this->assertEquals('no', $response->status->error);
         return $incident_id;
     }
@@ -55,7 +55,7 @@ class IncidentTest extends PHPUnit_Framework_TestCase {
      * @depends testIncidentUpdate
      */
     public function testIncidentResolve($incident_id) {
-        $response = $this->statusioClient->IncidentResolve(getenv('STATUSPAGE_ID'), $incident_id, 'Resolve', StatusioClient::STATUS_DEGRADED_PERFORMANCE, StatusioClient::STATE_MONITORING);
+        $response = $this->statusioClient->IncidentResolve('568d8a3e3cada8c2490000dd', $incident_id, 'Resolve', StatusioClient::STATUS_DEGRADED_PERFORMANCE, StatusioClient::STATE_MONITORING);
         $this->assertEquals('no', $response->status->error);
         return $incident_id;
     }
@@ -64,7 +64,7 @@ class IncidentTest extends PHPUnit_Framework_TestCase {
      * @depends testIncidentResolve
      */
     public function testIncidentDelete($incident_id) {
-        $response = $this->statusioClient->IncidentDelete(getenv('STATUSPAGE_ID'), $incident_id);
+        $response = $this->statusioClient->IncidentDelete('568d8a3e3cada8c2490000dd', $incident_id);
         $this->assertEquals('no', $response->status->error);
         return $incident_id;
     }

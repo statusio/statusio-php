@@ -10,11 +10,11 @@ class SubscriberTest extends PHPUnit_Framework_TestCase {
     public function __construct()
     {
         // Setup
-        $this->statusioClient = new StatusioClient(getenv('API_ID'), getenv('API_KEY'));
+        $this->statusioClient = new StatusioClient('', '');
     }
 
     public function testSubscriberAdd() {
-        $response = $this->statusioClient->SubscriberAdd(getenv('STATUSPAGE_ID'), 'email', 'apitest@example.com');
+        $response = $this->statusioClient->SubscriberAdd('568d8a3e3cada8c2490000dd', 'email', 'apitest@example.com');
         $this->assertEquals('no', $response->status->error);
         return $response->subscriber_id;
     }
@@ -23,7 +23,7 @@ class SubscriberTest extends PHPUnit_Framework_TestCase {
      * @depends testSubscriberAdd
      */
     public function testSubscriberList($subscriber_id) {
-        $response = $this->statusioClient->SubscriberList(getenv('STATUSPAGE_ID'));
+        $response = $this->statusioClient->SubscriberList('568d8a3e3cada8c2490000dd');
         $this->assertEquals('no', $response->status->error);
         $this->assertEquals($subscriber_id, $response->result->email[0]->_id);
         return $subscriber_id;
@@ -33,7 +33,7 @@ class SubscriberTest extends PHPUnit_Framework_TestCase {
      * @depends testSubscriberList
      */
     public function testSubscriberUpdate($subscriber_id) {
-        $response = $this->statusioClient->SubscriberUpdate(getenv('STATUSPAGE_ID'), $subscriber_id, 'apitest@example.com');
+        $response = $this->statusioClient->SubscriberUpdate('568d8a3e3cada8c2490000dd', $subscriber_id, 'apitest@example.com');
         $this->assertEquals('no', $response->status->error);
         return $subscriber_id;
     }
@@ -42,7 +42,7 @@ class SubscriberTest extends PHPUnit_Framework_TestCase {
      * @depends testSubscriberUpdate
      */
     public function testSubscriberRemove($subscriber_id) {
-        $response = $this->statusioClient->SubscriberRemove(getenv('STATUSPAGE_ID'), $subscriber_id);
+        $response = $this->statusioClient->SubscriberRemove('568d8a3e3cada8c2490000dd', $subscriber_id);
         $this->assertEquals('no', $response->status->error);
         return $subscriber_id;
     }
