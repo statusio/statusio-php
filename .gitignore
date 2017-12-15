@@ -2,3 +2,5 @@ vendor/
 .idea/
 composer.lock
 phpunit.phar
+composer.phar
+phpunit-5.7.25.phar
