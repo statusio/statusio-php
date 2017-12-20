@@ -63,8 +63,7 @@ Library contains few predefined constants and notification setup based on bitmas
             '<statuspage_id>', 
             'Incident name', 
             'Incident details',
-            ['<component_id>'], 
-            ['<container_id>'], 
+            ['<component_id>-<container_id>'], 
             StatusioClient::STATUS_OPERATIONAL,
             StatusioClient::STATE_IDENTIFIED, 
             StatusioClient::NOTIFY_EMAIL + StatusioClient::NOTIFY_SMS // equal to 'notify_email' = 1, 'notify_sms' = 1 and all other notifications = 0 
