@@ -15,7 +15,7 @@ class IncidentTest extends PHPUnit_Framework_TestCase {
 
     public function testIncidentCreate() {
         $response = $this->statusioClient->IncidentCreate('568d8a3e3cada8c2490000dd', 'Incident', 'Details',
-            ['568d8a3e3cada8c2490000ed'], ['568d8a3e3cada8c2490000ec'], StatusioClient::STATUS_OPERATIONAL,
+            ['568d8a3e3cada8c2490000ed-568d8a3e3cada8c2490000ec'], StatusioClient::STATUS_OPERATIONAL,
             StatusioClient::STATE_IDENTIFIED, StatusioClient::NOTIFY_SLACK + StatusioClient::NOTIFY_HIPCHAT);
 
         $this->assertEquals('no', $response->status->error);

@@ -131,22 +131,20 @@ class StatusioClient {
      * @param string $statuspage_id Status page ID
      * @param string $incident_name A descriptive title for the incident
      * @param string $incident_details Message describing this incident
-     * @param array $components ID of each affected component
-     * @param array $containers ID of each affected container
+     * @param array infrastructure_affected ID of each affected component and container combo
      * @param int $current_status The status of the components and containers affected by this incident (StatusioClient::STATUS_*).
      * @param int $current_state The state of this incident (StatusioClient::STATE_*).
      * @param int $notifications Bitmasked notifications (StatusioClient::NOTIFY_*). To use multiple just add them up (ie StatusioClient::NOTIFY_SMS + StatusioClient::NOTIFY_SLACK).
      * @param int $all_infrastructure_affected Affect all components and containers (default = 0)
      * @return object
      */
-    public function IncidentCreate($statuspage_id, $incident_name, $incident_details, $components, $containers,
+    public function IncidentCreate($statuspage_id, $incident_name, $incident_details, $infrastructure_affected,
                                    $current_status, $current_state, $notifications = 0, $all_infrastructure_affected = 0) {
         $data = $this->getNotify($notifications);
         $data['statuspage_id'] = $statuspage_id;
         $data['incident_name'] = $incident_name;
         $data['incident_details'] = $incident_details;
-        $data['components'] = $components;
-        $data['containers'] = $containers;
+        $data['infrastructure_affected'] = $infrastructure_affected;
         $data['current_status'] = $current_status;
         $data['current_state'] = $current_state;
         $data['all_infrastructure_affected'] = $all_infrastructure_affected;

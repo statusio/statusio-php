@@ -26,7 +26,7 @@ var_dump($result);
     $api->ComponentStatusUpdate($statuspage_id, $components, $containers, $details, $current_status)
     $api->IncidentList($statuspage_id)
     $api->IncidentMessage($statuspage_id, $message_id)
-    $api->IncidentCreate($statuspage_id, $incident_name, $incident_details, $components, $containers, 
+    $api->IncidentCreate($statuspage_id, $incident_name, $incident_details, $infrastructure_affected, 
                          $current_status, $current_state, $notifications = 0, $all_infrastructure_affected = 0)
     $api->IncidentUpdate($statuspage_id, $incident_id, $incident_details, $current_status, $current_state, 
                          $notifications = 0)
