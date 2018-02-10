@@ -2,8 +2,6 @@
 
 namespace Statusio;
 
-require 'vendor/autoload.php';
-
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception;
 
