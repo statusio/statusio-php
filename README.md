@@ -25,7 +25,9 @@ var_dump($result);
     $api->ComponentList($statuspage_id)
     $api->ComponentStatusUpdate($statuspage_id, $component, $container, $details, $current_status)
     $api->IncidentList($statuspage_id)
+    $api->IncidentListByID($statuspage_id)
     $api->IncidentMessage($statuspage_id, $message_id)
+    $api->IncidentSingle($statuspage_id, $incident_id)
     $api->IncidentCreate($statuspage_id, $incident_name, $incident_details, $infrastructure_affected, 
                          $current_status, $current_state, $notifications = 0, $all_infrastructure_affected = 0)
     $api->IncidentUpdate($statuspage_id, $incident_id, $incident_details, $current_status, $current_state, 
@@ -34,7 +36,9 @@ var_dump($result);
                           $notifications = 0)
     $api->IncidentDelete($statuspage_id, $incident_id)
     $api->MaintenanceList($statuspage_id)
+    $api->MaintenanceListByID($statuspage_id)
     $api->MaintenanceMessage($statuspage_id, $message_id)
+    $api->MaintenanceSingle($statuspage_id, $maintenance_id)
     $api->MaintenanceSchedule($statuspage_id, $maintenance_name, $maintenance_details, $infrastructure_affected, 
                               $date_planned_start, $time_planned_start, $date_planned_end, 
                               $time_planned_end, $automation = 0, $all_infrastructure_affected = 0, 

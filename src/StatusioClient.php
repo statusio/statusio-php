@@ -114,6 +114,17 @@ class StatusioClient {
     }
 
     /**
+     * List all active and resolved incidents by ID.
+     *
+     * @param string $statuspage_id Status page ID
+     * @return object
+     */
+    public function IncidentListByID($statuspage_id) {
+        $guzzleResponse = $this->guzzleClient->get('incidents/' . $statuspage_id);
+        if($guzzleResponse->getStatusCode() == 200) return json_decode($guzzleResponse->getBody());
+    }
+
+    /**
      * Display incident message.
      *
      * @param string $statuspage_id Status page ID
@@ -122,6 +133,18 @@ class StatusioClient {
      */
     public function IncidentMessage($statuspage_id, $message_id) {
         $guzzleResponse = $this->guzzleClient->get('incident/message/' . $statuspage_id . '/' . $message_id);
+        if($guzzleResponse->getStatusCode() == 200) return json_decode($guzzleResponse->getBody());
+    }
+
+    /**
+     * Get single incident.
+     *
+     * @param string $statuspage_id Status page ID
+     * @param string $incident_id Incident ID
+     * @return object
+     */
+    public function IncidentSingle($statuspage_id, $incident_id) {
+        $guzzleResponse = $this->guzzleClient->get('incident/' . $statuspage_id . '/' . $incident_id);
         if($guzzleResponse->getStatusCode() == 200) return json_decode($guzzleResponse->getBody());
     }
 
@@ -231,6 +254,17 @@ class StatusioClient {
     }
 
     /**
+     * List all active, resolved and upcoming maintenances by ID
+     *
+     * @param string $statuspage_id Status page ID
+     * @return object
+     */
+    public function MaintenanceListByID($statuspage_id) {
+        $guzzleResponse = $this->guzzleClient->get('maintenances/' . $statuspage_id);
+        if($guzzleResponse->getStatusCode() == 200) return json_decode($guzzleResponse->getBody());
+    }
+
+    /**
      * Display maintenance message
      *
      * @param string $statuspage_id Status page ID
@@ -239,6 +273,18 @@ class StatusioClient {
      */
     public function MaintenanceMessage($statuspage_id, $message_id) {
         $guzzleResponse = $this->guzzleClient->get('maintenance/message/' . $statuspage_id . '/' . $message_id);
+        if($guzzleResponse->getStatusCode() == 200) return json_decode($guzzleResponse->getBody());
+    }
+
+    /**
+     * Get single maintenance
+     *
+     * @param string $statuspage_id Status page ID
+     * @param string $maintenance_id Maintenance ID
+     * @return object
+     */
+    public function MaintenanceSingle($statuspage_id, $maintenance_id) {
+        $guzzleResponse = $this->guzzleClient->get('maintenance/' . $statuspage_id . '/' . $maintenance_id);
         if($guzzleResponse->getStatusCode() == 200) return json_decode($guzzleResponse->getBody());
     }
 
