@@ -83,17 +83,17 @@ class StatusioClient {
      * Update the status of a component on the fly without creating an incident or maintenance.
      *
      * @param string $statuspage_id string Status page ID
-     * @param array $components ID of each affected component
-     * @param array $containers ID of each affected container
+     * @param string $component ID of affected component
+     * @param string $container ID of affected container
      * @param string $details A brief message describing this update
      * @param int $current_status Any numeric status code.
      * @return object
      */
-    public function ComponentStatusUpdate($statuspage_id, $components, $containers, $details, $current_status) {
+    public function ComponentStatusUpdate($statuspage_id, $component, $container, $details, $current_status) {
         $guzzleResponse = $this->guzzleClient->post('component/status/update', ['json' => [
             'statuspage_id' => $statuspage_id,
-            'components' => $components,
-            'containers' => $containers,
+            'component' => $component,
+            'container' => $container,
             'details' => $details,
             'current_status' => $current_status
         ]]);

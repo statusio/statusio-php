@@ -23,7 +23,7 @@ var_dump($result);
 
 ```php
     $api->ComponentList($statuspage_id)
-    $api->ComponentStatusUpdate($statuspage_id, $components, $containers, $details, $current_status)
+    $api->ComponentStatusUpdate($statuspage_id, $component, $container, $details, $current_status)
     $api->IncidentList($statuspage_id)
     $api->IncidentMessage($statuspage_id, $message_id)
     $api->IncidentCreate($statuspage_id, $incident_name, $incident_details, $infrastructure_affected, 
