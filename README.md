@@ -1,6 +1,6 @@
 # PHP Status.io
 
-PHP Package for Status.io
+PHP Package for [Status.io](https://status.io)
 
 ## Installation
 
