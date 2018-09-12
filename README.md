@@ -1,6 +1,6 @@
-# Status.io API for PHP
+# PHP Status.io
 
-A PHP Package for Status.io API
+PHP Package for Status.io
 
 ## Installation
 
@@ -8,7 +8,7 @@ A PHP Package for Status.io API
 composer require statusio/statusio-php
 ```
 
-## Usage example
+## Usage
 
 ```php
 use Statusio\StatusioClient;
@@ -19,7 +19,9 @@ $result = $api->StatusSummary('<statuspage_id>');
 var_dump($result);
 ```
 
-## Methods list
+View the full API documentation at: http://developers.status.io/
+
+## Methods
 
 ```php
     $api->ComponentList($statuspage_id)
@@ -60,7 +62,7 @@ var_dump($result);
 
 ## Constants
 
-Library contains few predefined constants and notification setup based on bitmask
+Predefined constants and notification setup based on bitmask
 
 ```php
     $result = $api->IncidentCreate(
