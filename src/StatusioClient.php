@@ -158,11 +158,11 @@ class StatusioClient {
      * @param int $current_status The status of the components and containers affected by this incident (StatusioClient::STATUS_*).
      * @param int $current_state The state of this incident (StatusioClient::STATE_*).
      * @param int $notifications Bitmasked notifications (StatusioClient::NOTIFY_*). To use multiple just add them up (ie StatusioClient::NOTIFY_SMS + StatusioClient::NOTIFY_SLACK).
-     * @param int $all_infrastructure_affected Affect all components and containers (default = 0)
+     * @param string $all_infrastructure_affected Affect all components and containers (default = "0")
      * @return object
      */
     public function IncidentCreate($statuspage_id, $incident_name, $incident_details, $infrastructure_affected,
-                                   $current_status, $current_state, $notifications = 0, $all_infrastructure_affected = 0) {
+                                   $current_status, $current_state, $notifications = 0, $all_infrastructure_affected = "0") {
         $data = $this->getNotify($notifications);
         $data['statuspage_id'] = $statuspage_id;
         $data['incident_name'] = $incident_name;
@@ -299,19 +299,19 @@ class StatusioClient {
      * @param string $time_planned_start Time maintenance is expected to start
      * @param string $date_planned_end Date maintenance is expected to end
      * @param string $time_planned_end Time maintenance is expected to end
-     * @param int $automation Automatically start and end the maintenance (default = 0)
-     * @param int $all_infrastructure_affected Affect all components and containers (default = 0)
-     * @param int $maintenance_notify_now Notify subscribers now (1 = Send notification)
-     * @param int $maintenance_notify_1_hr Notify subscribers 1 hour before scheduled maintenance start time (1 = Send notification)
-     * @param int $maintenance_notify_24_hr Notify subscribers 24 hours before scheduled maintenance start time (1 = Send notification)
-     * @param int $maintenance_notify_72_hr Notify subscribers 72 hours before scheduled maintenance start time (1 = Send notification)
+     * @param string $automation Automatically start and end the maintenance (default = "0")
+     * @param string $all_infrastructure_affected Affect all components and containers (default = "0")
+     * @param string $maintenance_notify_now Notify subscribers now ("1" = Send notification)
+     * @param string $maintenance_notify_1_hr Notify subscribers 1 hour before scheduled maintenance start time ("1" = Send notification)
+     * @param string $maintenance_notify_24_hr Notify subscribers 24 hours before scheduled maintenance start time ("1" = Send notification)
+     * @param string $maintenance_notify_72_hr Notify subscribers 72 hours before scheduled maintenance start time ("1" = Send notification)
      * @return object
      */
     public function MaintenanceSchedule($statuspage_id, $maintenance_name, $maintenance_details, $infrastructure_affected,
                                         $date_planned_start, $time_planned_start, $date_planned_end, $time_planned_end,
-                                        $automation = 0, $all_infrastructure_affected = 0,
-                                        $maintenance_notify_now = 0, $maintenance_notify_1_hr = 0,
-                                        $maintenance_notify_24_hr = 0, $maintenance_notify_72_hr = 0) {
+                                        $automation = "0", $all_infrastructure_affected = "0",
+                                        $maintenance_notify_now = "0", $maintenance_notify_1_hr = "0",
+                                        $maintenance_notify_24_hr = "0", $maintenance_notify_72_hr = "0") {
         $data = [];
         $data['statuspage_id'] = $statuspage_id;
         $data['maintenance_name'] = $maintenance_name;

@@ -70,7 +70,7 @@ class MaintenanceTest extends PHPUnit_Framework_TestCase {
     /**
      * @depends testMaintenanceFinish
      */
-    public function testIncidentDelete($maintenance_id) {
+    public function testMaintenanceDelete($maintenance_id) {
         $response = $this->statusioClient->MaintenanceDelete('568d8a3e3cada8c2490000dd', $maintenance_id);
         $this->assertEquals('no', $response->status->error);
         return $maintenance_id;
