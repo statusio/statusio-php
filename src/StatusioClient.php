@@ -155,12 +155,13 @@ class StatusioClient {
      * @param array infrastructure_affected ID of each affected component and container combo
      * @param int $current_status The status of the components and containers affected by this incident (StatusioClient::STATUS_*).
      * @param int $current_state The state of this incident (StatusioClient::STATE_*).
+     * @param string message_subject The message subject for email notifications
      * @param int $notifications Bitmasked notifications (StatusioClient::NOTIFY_*). To use multiple just add them up (ie StatusioClient::NOTIFY_SMS + StatusioClient::NOTIFY_SLACK).
      * @param string $all_infrastructure_affected Affect all components and containers (default = "0")
      * @return object
      */
     public function IncidentCreate($statuspage_id, $incident_name, $incident_details, $infrastructure_affected,
-                                   $current_status, $current_state, $notifications = 0, $all_infrastructure_affected = "0") {
+                                   $current_status, $current_state, $message_subject, $notifications = 0, $all_infrastructure_affected = "0") {
         $data = $this->getNotify($notifications);
         $data['statuspage_id'] = $statuspage_id;
         $data['incident_name'] = $incident_name;
@@ -168,6 +169,7 @@ class StatusioClient {
         $data['infrastructure_affected'] = $infrastructure_affected;
         $data['current_status'] = $current_status;
         $data['current_state'] = $current_state;
+        $data['message_subject'] = $message_subject;
         $data['all_infrastructure_affected'] = $all_infrastructure_affected;
 
         $guzzleResponse = $this->guzzleClient->post('incident/create', ['json' => $data]);
@@ -182,10 +184,11 @@ class StatusioClient {
      * @param string $incident_details Message describing this incident update
      * @param int $current_status The status of the components and containers affected by this incident (StatusioClient::STATUS_*).
      * @param int $current_state The state of this incident (StatusioClient::STATE_*).
+     * @param string message_subject The message subject for email notifications
      * @param int $notifications Bitmasked notifications (StatusioClient::NOTIFY_*). To use multiple just add them up (ie StatusioClient::NOTIFY_SMS + StatusioClient::NOTIFY_SLACK).
      * @return object
      */
-    public function IncidentUpdate($statuspage_id, $incident_id, $incident_details, $current_status, $current_state,
+    public function IncidentUpdate($statuspage_id, $incident_id, $incident_details, $current_status, $current_state, $message_subject,
                                    $notifications = 0) {
         $data = $this->getNotify($notifications);
         $data['statuspage_id'] = $statuspage_id;
@@ -193,6 +196,7 @@ class StatusioClient {
         $data['incident_details'] = $incident_details;
         $data['current_status'] = $current_status;
         $data['current_state'] = $current_state;
+        $data['message_subject'] = $message_subject;
 
         $guzzleResponse = $this->guzzleClient->post('incident/update', ['json' => $data]);
         if($guzzleResponse->getStatusCode() == 200) return json_decode($guzzleResponse->getBody());
@@ -206,10 +210,11 @@ class StatusioClient {
      * @param string $incident_details Message describing this incident
      * @param int $current_status The status of the components and containers affected by this incident (StatusioClient::STATUS_*).
      * @param int $current_state The state of this incident (StatusioClient::STATE_*).
+     * @param string message_subject The message subject for email notifications
      * @param int $notifications Bitmasked notifications (StatusioClient::NOTIFY_*). To use multiple just add them up (ie StatusioClient::NOTIFY_SMS + StatusioClient::NOTIFY_SLACK).
      * @return object
      */
-    public function IncidentResolve($statuspage_id, $incident_id, $incident_details, $current_status, $current_state,
+    public function IncidentResolve($statuspage_id, $incident_id, $incident_details, $current_status, $current_state, $message_subject,
                                    $notifications = 0) {
         $data = $this->getNotify($notifications);
         $data['statuspage_id'] = $statuspage_id;
@@ -217,6 +222,7 @@ class StatusioClient {
         $data['incident_details'] = $incident_details;
         $data['current_status'] = $current_status;
         $data['current_state'] = $current_state;
+        $data['message_subject'] = $message_subject;
 
         $guzzleResponse = $this->guzzleClient->post('incident/resolve', ['json' => $data]);
         if($guzzleResponse->getStatusCode() == 200) return json_decode($guzzleResponse->getBody());
@@ -297,6 +303,7 @@ class StatusioClient {
      * @param string $time_planned_start Time maintenance is expected to start
      * @param string $date_planned_end Date maintenance is expected to end
      * @param string $time_planned_end Time maintenance is expected to end
+     * @param string message_subject The message subject for email notifications
      * @param string $automation Automatically start and end the maintenance (default = "0")
      * @param string $all_infrastructure_affected Affect all components and containers (default = "0")
      * @param string $maintenance_notify_now Notify subscribers now ("1" = Send notification)
@@ -307,7 +314,7 @@ class StatusioClient {
      */
     public function MaintenanceSchedule($statuspage_id, $maintenance_name, $maintenance_details, $infrastructure_affected,
                                         $date_planned_start, $time_planned_start, $date_planned_end, $time_planned_end,
-                                        $automation = "0", $all_infrastructure_affected = "0",
+                                        $message_subject, $automation = "0", $all_infrastructure_affected = "0",
                                         $maintenance_notify_now = "0", $maintenance_notify_1_hr = "0",
                                         $maintenance_notify_24_hr = "0", $maintenance_notify_72_hr = "0") {
         $data = [];
@@ -320,6 +327,7 @@ class StatusioClient {
         $data['time_planned_start'] = $time_planned_start;
         $data['date_planned_end'] = $date_planned_end;
         $data['time_planned_end'] = $time_planned_end;
+        $data['message_subject'] = $message_subject;
         $data['automation'] = $automation;
         $data['maintenance_notify_now'] = $maintenance_notify_now;
         $data['maintenance_notify_1_hr'] = $maintenance_notify_1_hr;
@@ -336,14 +344,16 @@ class StatusioClient {
      * @param string $statuspage_id Status page ID
      * @param string $maintenance_id Maintenance ID
      * @param string $maintenance_details Message describing this maintenance update
+     * @param string message_subject The message subject for email notifications
      * @param int $notifications Bitmasked notifications (StatusioClient::NOTIFY_*). To use multiple just add them up (ie StatusioClient::NOTIFY_SMS + StatusioClient::NOTIFY_SLACK).
      * @return object
      */
-    public function MaintenanceStart($statuspage_id, $maintenance_id, $maintenance_details, $notifications = 0) {
+    public function MaintenanceStart($statuspage_id, $maintenance_id, $maintenance_details, $message_subject, $notifications = 0) {
         $data = $this->getNotify($notifications);
         $data['statuspage_id'] = $statuspage_id;
         $data['maintenance_id'] = $maintenance_id;
         $data['maintenance_details'] = $maintenance_details;
+        $data['message_subject'] = $message_subject;
 
         $guzzleResponse = $this->guzzleClient->post('maintenance/start', ['json' => $data]);
         if($guzzleResponse->getStatusCode() == 200) return json_decode($guzzleResponse->getBody());
@@ -355,14 +365,16 @@ class StatusioClient {
      * @param string $statuspage_id Status page ID
      * @param string $maintenance_id Maintenance ID
      * @param string $maintenance_details Message describing this maintenance
+     * @param string message_subject The message subject for email notifications
      * @param int $notifications Bitmasked notifications (StatusioClient::NOTIFY_*). To use multiple just add them up (ie StatusioClient::NOTIFY_SMS + StatusioClient::NOTIFY_SLACK).
      * @return object
      */
-    public function MaintenanceUpdate($statuspage_id, $maintenance_id, $maintenance_details, $notifications = 0) {
+    public function MaintenanceUpdate($statuspage_id, $maintenance_id, $maintenance_details, $message_subject, $notifications = 0) {
         $data = $this->getNotify($notifications);
         $data['statuspage_id'] = $statuspage_id;
         $data['maintenance_id'] = $maintenance_id;
         $data['maintenance_details'] = $maintenance_details;
+        $data['message_subject'] = $message_subject;
 
         $guzzleResponse = $this->guzzleClient->post('maintenance/update', ['json' => $data]);
         if($guzzleResponse->getStatusCode() == 200) return json_decode($guzzleResponse->getBody());
@@ -374,14 +386,16 @@ class StatusioClient {
      * @param string $statuspage_id Status page ID
      * @param string $maintenance_id Maintenance ID
      * @param string $maintenance_details Message describing this maintenance
+     * @param string message_subject The message subject for email notifications
      * @param int $notifications Bitmasked notifications (StatusioClient::NOTIFY_*). To use multiple just add them up (ie StatusioClient::NOTIFY_SMS + StatusioClient::NOTIFY_SLACK).
      * @return object
      */
-    public function MaintenanceFinish($statuspage_id, $maintenance_id, $maintenance_details, $notifications = 0) {
+    public function MaintenanceFinish($statuspage_id, $maintenance_id, $maintenance_details, $message_subject, $notifications = 0) {
         $data = $this->getNotify($notifications);
         $data['statuspage_id'] = $statuspage_id;
         $data['maintenance_id'] = $maintenance_id;
         $data['maintenance_details'] = $maintenance_details;
+        $data['message_subject'] = $message_subject;
 
         $guzzleResponse = $this->guzzleClient->post('maintenance/finish', ['json' => $data]);
         if($guzzleResponse->getStatusCode() == 200) return json_decode($guzzleResponse->getBody());

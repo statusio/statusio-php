@@ -31,10 +31,10 @@ View the full API documentation at: http://developers.status.io/
     $api->IncidentMessage($statuspage_id, $message_id)
     $api->IncidentSingle($statuspage_id, $incident_id)
     $api->IncidentCreate($statuspage_id, $incident_name, $incident_details, $infrastructure_affected, 
-                         $current_status, $current_state, $notifications = 0, $all_infrastructure_affected = "0")
-    $api->IncidentUpdate($statuspage_id, $incident_id, $incident_details, $current_status, $current_state, 
+                         $current_status, $current_state, $message_subject, $notifications = 0, $all_infrastructure_affected = "0")
+    $api->IncidentUpdate($statuspage_id, $incident_id, $incident_details, $current_status, $current_state, $message_subject, 
                          $notifications = 0)
-    $api->IncidentResolve($statuspage_id, $incident_id, $incident_details, $current_status, $current_state, 
+    $api->IncidentResolve($statuspage_id, $incident_id, $incident_details, $current_status, $current_state, $message_subject, 
                           $notifications = 0)
     $api->IncidentDelete($statuspage_id, $incident_id)
     $api->MaintenanceList($statuspage_id)
@@ -43,12 +43,12 @@ View the full API documentation at: http://developers.status.io/
     $api->MaintenanceSingle($statuspage_id, $maintenance_id)
     $api->MaintenanceSchedule($statuspage_id, $maintenance_name, $maintenance_details, $infrastructure_affected, 
                               $date_planned_start, $time_planned_start, $date_planned_end, 
-                              $time_planned_end, $automation = "0", $all_infrastructure_affected = "0", 
+                              $time_planned_end, $message_subject, $automation = "0", $all_infrastructure_affected = "0", 
                               $maintenance_notify_now = "0", $maintenance_notify_1_hr = "0", 
                               $maintenance_notify_24_hr = "0", $maintenance_notify_72_hr = "0")
-    $api->MaintenanceStart($statuspage_id, $maintenance_id, $maintenance_details, $notifications = 0)
-    $api->MaintenanceUpdate($statuspage_id, $maintenance_id, $maintenance_details, $notifications = 0) 
-    $api->MaintenanceFinish($statuspage_id, $maintenance_id, $maintenance_details, $notifications = 0)
+    $api->MaintenanceStart($statuspage_id, $maintenance_id, $maintenance_details, $message_subject, $notifications = 0)
+    $api->MaintenanceUpdate($statuspage_id, $maintenance_id, $maintenance_details, $message_subject, $notifications = 0) 
+    $api->MaintenanceFinish($statuspage_id, $maintenance_id, $maintenance_details, $message_subject, $notifications = 0)
     $api->MaintenanceDelete($statuspage_id, $maintenance_id)
     $api->MetricUpdate($statuspage_id, $metric_id, $day_avg, $day_start, $day_dates, $day_values,
                        $week_avg, $week_start, $week_dates, $week_values,
@@ -71,7 +71,8 @@ Predefined constants and notification setup based on bitmask
             'Incident details',
             ['<component_id>-<container_id>'], 
             StatusioClient::STATUS_OPERATIONAL,
-            StatusioClient::STATE_IDENTIFIED, 
+            StatusioClient::STATE_IDENTIFIED,
+            'Example Notification Message Subject',
             StatusioClient::NOTIFY_EMAIL + StatusioClient::NOTIFY_SMS // equal to 'notify_email' = 1, 'notify_sms' = 1 and all other notifications = 0 
 );
 ```
