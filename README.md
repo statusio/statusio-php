@@ -55,7 +55,7 @@ View the full API documentation at: http://developers.status.io/
                        $month_avg, $month_start, $month_dates, $month_values)
     $api->StatusSummary($statuspage_id)
     $api->SubscriberList($statuspage_id)
-    $api->SubscriberAdd($statuspage_id, $method, $address, $silent = 1, $granular = '')
+    $api->SubscriberAdd($statuspage_id, $method, $address, $silent = '1', $granular = '')
     $api->SubscriberUpdate($statuspage_id, $subscriber_id, $address, $granular = '') 
     $api->SubscriberRemove($statuspage_id, $subscriber_id)
 ```

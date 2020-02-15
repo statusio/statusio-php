@@ -492,11 +492,11 @@ class StatusioClient {
      * @param string $statuspage_id Status page ID
      * @param string $method Communication method of subscriber. Valid methods are `email`, `sms` or `webhook`
      * @param string $address Subscriber address (SMS number must include country code ie. +1)
-     * @param int $silent Supress the welcome message (1 = Do not send notification)
+     * @param string $silent Suppress the welcome message (1 = Do not send notification)
      * @param string $granular List of component_container combos
      * @return object
      */
-    public function SubscriberAdd($statuspage_id, $method, $address, $silent = 1, $granular = '') {
+    public function SubscriberAdd($statuspage_id, $method, $address, $silent = '1', $granular = '') {
         $data = [];
         $data['statuspage_id'] = $statuspage_id;
         $data['method'] = $method;
