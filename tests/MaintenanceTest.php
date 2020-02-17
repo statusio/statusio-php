@@ -15,7 +15,7 @@ class MaintenanceTest extends PHPUnit_Framework_TestCase {
 
     public function testMaintenanceSchedule() {
         $response = $this->statusioClient->MaintenanceSchedule('568d8a3e3cada8c2490000dd', 'Maintenance', 'Details',
-            ['568d8a3e3cada8c2490000ed-568d8a3e3cada8c2490000ec'], '2018-12-31', '23:59', '2019-01-01', '23:59', 'Example Message Subject');
+            ['568d8a3e3cada8c2490000ed-568d8a3e3cada8c2490000ec'], '2018-12-31', '23:59', '2019-01-01', '23:59');
         $this->assertEquals('no', $response->status->error);
         return $response->result;
     }
@@ -44,7 +44,7 @@ class MaintenanceTest extends PHPUnit_Framework_TestCase {
      * @depends testMaintenanceMessage
      */
     public function testMaintenanceStart($maintenance_id) {
-        $response = $this->statusioClient->MaintenanceStart('568d8a3e3cada8c2490000dd', $maintenance_id, 'Start', 'Example Message Subject');
+        $response = $this->statusioClient->MaintenanceStart('568d8a3e3cada8c2490000dd', $maintenance_id, 'Start');
         $this->assertEquals('no', $response->status->error);
         return $maintenance_id;
     }
@@ -53,7 +53,7 @@ class MaintenanceTest extends PHPUnit_Framework_TestCase {
      * @depends testMaintenanceStart
      */
     public function testMaintenanceUpdate($maintenance_id) {
-        $response = $this->statusioClient->MaintenanceUpdate('568d8a3e3cada8c2490000dd', $maintenance_id, 'UPDATE', 'Example Message Subject');
+        $response = $this->statusioClient->MaintenanceUpdate('568d8a3e3cada8c2490000dd', $maintenance_id, 'UPDATE');
         $this->assertEquals('no', $response->status->error);
         return $maintenance_id;
     }
@@ -62,7 +62,7 @@ class MaintenanceTest extends PHPUnit_Framework_TestCase {
      * @depends testMaintenanceUpdate
      */
     public function testMaintenanceFinish($maintenance_id) {
-        $response = $this->statusioClient->MaintenanceFinish('568d8a3e3cada8c2490000dd', $maintenance_id, 'UPDATE', 'Example Message Subject');
+        $response = $this->statusioClient->MaintenanceFinish('568d8a3e3cada8c2490000dd', $maintenance_id, 'UPDATE');
         $this->assertEquals('no', $response->status->error);
         return $maintenance_id;
     }

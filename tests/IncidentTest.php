@@ -16,7 +16,7 @@ class IncidentTest extends PHPUnit_Framework_TestCase {
     public function testIncidentCreate() {
         $response = $this->statusioClient->IncidentCreate('568d8a3e3cada8c2490000dd', 'Incident', 'Details',
             ['568d8a3e3cada8c2490000ed-568d8a3e3cada8c2490000ec'], StatusioClient::STATUS_OPERATIONAL,
-            StatusioClient::STATE_IDENTIFIED, 'Example Message Subject', StatusioClient::NOTIFY_SLACK + StatusioClient::NOTIFY_HIPCHAT);
+            StatusioClient::STATE_IDENTIFIED, StatusioClient::NOTIFY_SLACK + StatusioClient::NOTIFY_HIPCHAT);
 
         $this->assertEquals('no', $response->status->error);
         return $response->result;
@@ -46,7 +46,7 @@ class IncidentTest extends PHPUnit_Framework_TestCase {
      * @depends testIncidentMessage
      */
     public function testIncidentUpdate($incident_id) {
-        $response = $this->statusioClient->IncidentUpdate('568d8a3e3cada8c2490000dd', $incident_id, 'Update', StatusioClient::STATUS_DEGRADED_PERFORMANCE, StatusioClient::STATE_MONITORING, 'Example Message Subject');
+        $response = $this->statusioClient->IncidentUpdate('568d8a3e3cada8c2490000dd', $incident_id, 'Update', StatusioClient::STATUS_DEGRADED_PERFORMANCE, StatusioClient::STATE_MONITORING);
         $this->assertEquals('no', $response->status->error);
         return $incident_id;
     }
@@ -55,7 +55,7 @@ class IncidentTest extends PHPUnit_Framework_TestCase {
      * @depends testIncidentUpdate
      */
     public function testIncidentResolve($incident_id) {
-        $response = $this->statusioClient->IncidentResolve('568d8a3e3cada8c2490000dd', $incident_id, 'Resolve', StatusioClient::STATUS_DEGRADED_PERFORMANCE, StatusioClient::STATE_MONITORING, 'Example Message Subject');
+        $response = $this->statusioClient->IncidentResolve('568d8a3e3cada8c2490000dd', $incident_id, 'Resolve', StatusioClient::STATUS_DEGRADED_PERFORMANCE, StatusioClient::STATE_MONITORING);
         $this->assertEquals('no', $response->status->error);
         return $incident_id;
     }
