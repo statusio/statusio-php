@@ -23,6 +23,7 @@ class StatusioClient {
     const NOTIFY_IRC = 16;
     const NOTIFY_HIPCHAT = 32;
     const NOTIFY_SLACK = 64;
+    const NOTIFY_MSTEAMS = 128;
 
     private $guzzleClient;
     private $apiId;
@@ -53,7 +54,8 @@ class StatusioClient {
             'social' => "0",
             'irc' => "0",
             'hipchat' => "0",
-            'slack' => "0"
+            'slack' => "0",
+            'msteams' => "0"
         ];
         if(($notifications & StatusioClient::NOTIFY_EMAIL) == StatusioClient::NOTIFY_EMAIL) $notify['notify_email'] = "1";
         if(($notifications & StatusioClient::NOTIFY_SMS) == StatusioClient::NOTIFY_SMS) $notify['notify_sms'] = "1";
@@ -62,6 +64,7 @@ class StatusioClient {
         if(($notifications & StatusioClient::NOTIFY_IRC) == StatusioClient::NOTIFY_IRC) $notify['irc'] = "1";
         if(($notifications & StatusioClient::NOTIFY_HIPCHAT) == StatusioClient::NOTIFY_HIPCHAT) $notify['hipchat'] = "1";
         if(($notifications & StatusioClient::NOTIFY_SLACK) == StatusioClient::NOTIFY_SLACK) $notify['slack'] = "1";
+        if(($notifications & StatusioClient::NOTIFY_MSTEAMS) == StatusioClient::NOTIFY_MSTEAMS) $notify['msteams'] = "1";
         return $notify;
     }
 

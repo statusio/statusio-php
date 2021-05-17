@@ -99,5 +99,6 @@ StatusioClient::NOTIFY_SOCIAL;
 StatusioClient::NOTIFY_IRC;
 StatusioClient::NOTIFY_HIPCHAT;
 StatusioClient::NOTIFY_SLACK;
+StatusioClient::NOTIFY_MSTEAMS;
 ```
 

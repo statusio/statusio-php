@@ -1,5 +1,8 @@
 ## Change Log
 
+### v1.5.1 (2021/5/17)
+- Added Microsoft Teams
+
 ### v1.5.0 (2020/9/8)
 - Allow Guzzle to use versions above 6.0
 
